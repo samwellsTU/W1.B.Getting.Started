@@ -12,8 +12,21 @@
     <script>
       //This is a comment it is just for humans, the computer ignores it!
 
+      //Ok, I'm making a new audio thing. this how i make it
+      const ctx = new AudioContext();
+
+      const osc = new OscillatorNode(ctx);
+      osc.frequency.value = 100;
+
+      const vol = new GainNode(ctx);
+      vol.gain.value = 0.5;
+
+      osc.connect(vol);
+      vol.connect(ctx.destination);
+      osc.start();
+
       //below is a line of code in the audio doesn't start automatically
-      document.querySelector("button").onclick = ctx.resume();
+      document.querySelector("button").onclick = () => ctx.resume();
     </script>
   </body>
 </html>
